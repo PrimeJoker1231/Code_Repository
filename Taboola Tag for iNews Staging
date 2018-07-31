@@ -1,1 +1,78 @@
+console.log("[iNews Taboola] Script Execution Started");
+//create taboola script functinality
+var headScript = document.createElement("script");
+headScript.setAttribute("type", "text/javascript");
+headScript.innerHTML = "window._taboola = window._taboola || [];_taboola.push({article:'auto'});  !function (e, f, u, i) {if (!document.getElementById(i)){e.async = 1; e.src = u; e.id = i; f.parentNode.insertBefore(e, f);}}(document.createElement('script'), document.getElementsByTagName('script')[0],'//cdn.taboola.com/libtrc/johnstonpress-inewscouk/loader.js', 'tb_loader_script'); if(window.performance && typeof window.performance.mark == 'function') {window.performance.mark('tbl_ic');}";
+$("head").prepend(headScript);
 
+//create div element to where the taboola will be displayed
+var taboolaDiv = document.createElement("div");
+taboolaDiv.id = "taboola-below-article";
+$("#taboola-position").after(taboolaDiv);
+
+//disable old Taboola from displaying on the page
+$(".slab.slab-content.slab-related--taboola").css({"display":"none"});
+
+//css style for taboola header font size
+var customeStyle = document.createElement("style");
+customeStyle.setAttribute("type", "text/css");
+customeStyle.innerHTML = "span.trc_rbox_header_span{font-size:24px !important;} div[id*='trc_header_'].trc_rbox_header.trc_rbox_border_elm{padding:10px 0 25px 0}";
+$("head").prepend(customeStyle);
+
+
+//create below article script functionality
+var belowArticle = document.createElement("script");
+belowArticle.setAttribute("type", "text/javascript");
+belowArticle.innerHTML = "window._taboola = window._taboola || []; _taboola.push({mode: 'thumbnails-a',container: 'taboola-below-article',placement: 'Below Article',target_type: 'mix'});";
+$("#text-2").after(belowArticle);
+
+//create end script
+var endScript = document.createElement("script");
+endScript.setAttribute("type", "text/javascript");
+endScript.innerHTML = "window._taboola = window._taboola || []; _taboola.push({flush: true});";
+
+//check size of the window width
+var windowWidth = $(window).width();
+console.log("[iNews Taboola] wid value is: " + windowWidth);
+if (windowWidth >= 1300){
+  $("#taboola-below-article").css({
+    "width": "71%",
+    "margin": "0 30%",
+    "padding": "0",
+    "border": "0px none"
+  });
+  console.log("[iNews Taboola] This is a desktop page");
+} else if (windowWidth >= 960 && windowWidth <= 1299){
+  $("#taboola-below-article").css({
+    "width": "100%",
+    "margin": "0 auto",
+    "padding": "0",
+    "border": "0px none"
+  });
+  console.log("[iNews Taboola] This is a tablet page");
+} else if (windowWidth >= 725 && windowWidth <= 959){
+  $("#taboola-below-article").css({
+    "width": "100%",
+    "margin": "0 auto",
+    "padding": "0",
+    "border": "0px none"
+  });
+  console.log("[iNews Taboola] This is a mobile page");
+} else if (windowWidth < 630 && windowWidth > 320){
+  $("#taboola-below-article").css({
+    "width": "100%",
+    "margin": "0 auto",
+    "padding": "0",
+    "border": "0px none"
+  });
+  console.log("[iNews Taboola] This is a mobile page");
+}else if (windowWidth <= 319){
+    $("#taboola-below-article").css({
+      "width": "100%",
+      "margin": "0 auto",
+      "padding": "0",
+      "border": "0px none"
+    });
+    console.log("[iNews Taboola] This is a mobile page");
+}
+console.log("[iNews Taboola] Div has been styled");
