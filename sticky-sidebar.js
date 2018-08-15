@@ -86,7 +86,7 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
        * Inner wrapper selector.
        * @type {String}
        */
-      innerWrapperSelector: '.inner-wrapper-sticky',
+      innerWrapperSelector: '.third-slot.article-third-slot',
 
       /**
        * The name of CSS class to apply to elements when they have become stuck.
@@ -201,12 +201,12 @@ var stickySidebar = createCommonjsModule(function (module, exports) {
 
           if (!this.sidebarInner) {
             var wrapper = document.createElement('div');
-            wrapper.setAttribute('class', 'inner-wrapper-sticky');
+            wrapper.setAttribute('class', 'third-slot article-third-slot');
             this.sidebar.appendChild(wrapper);
 
             while (this.sidebar.firstChild != wrapper) {
               wrapper.appendChild(this.sidebar.firstChild);
-            }this.sidebarInner = this.sidebar.querySelector('.inner-wrapper-sticky');
+            }this.sidebarInner = this.sidebar.querySelector('.third-slot.article-third-slot');
           }
 
           // Container wrapper of the sidebar.
